@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>MTH 100 · Fractions Adventure</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#fff8ec;--cd:#fff;--tx:#1d2b3a;--mu:#5a6a7a;--ac:#2f6fed;--ok:#1a9a52;--no:#d64040;--f:#ffb703;--bd:#e3d9c6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#101823;--cd:#1a2635;--tx:#eef3f9;--mu:#a3b3c4;--ac:#5b8cf0;--ok:#43c981;--no:#ff7a7a;--f:#ffc83d;--bd:#2c3b4e}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#101823;--cd:#1a2635;--tx:#eef3f9;--mu:#a3b3c4;--ac:#5b8cf0;--ok:#43c981;--no:#ff7a7a;--f:#ffc83d;--bd:#2c3b4e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,sans-serif}
+.w{max-width:880px;margin:auto;padding:12px}
+h1{margin:6px 0 0}h2{margin:.4em 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+button{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:8px 13px;font:inherit;cursor:pointer}
+button.g{background:var(--bd);color:var(--tx)}button.on{outline:3px solid var(--f)}
+.card{background:var(--cd);border:2px solid var(--bd);border-radius:14px;padding:12px;margin:10px 0;overflow-x:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.f{font-size:1.1em;display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;line-height:1.15;font-weight:700}
+.f i{font-style:normal;padding:0 5px}.f i:first-child{border-bottom:2px solid currentColor}
+.f input{width:58px;text-align:center;margin:1px}
+input[type=number],input[type=text],select{font:inherit;padding:5px;border:2px solid var(--bd);border-radius:8px;background:var(--cd);color:var(--tx);width:66px}
+input[type=text]{width:140px}input[type=range]{width:min(260px,70%)}
+.two{display:grid;grid-template-columns:minmax(0,290px) 1fr;gap:8px;align-items:start}@media(max-width:640px){.two{grid-template-columns:1fr}}
+.wn{font-size:1.3em;font-weight:700;margin-right:7px;vertical-align:middle}
+#pb4 button,#pb6 button{font-size:1.3em;padding:8px 14px;margin:3px}
+.st{border-left:6px solid var(--ac);background:var(--cd);padding:8px 12px;margin:8px 0;border-radius:8px}
+.k{background:var(--f);color:#222;padding:1px 8px;border-radius:8px;font-weight:800}
+.tip{background:rgba(255,183,3,.2);padding:8px 12px;border-radius:10px}
+.notes{line-height:1.8}.notes br{content:"";display:block;margin-top:.7em}.gap{display:inline-block;width:3em}
+.cx{background:rgba(255,183,3,.18);padding:8px 12px;border-radius:10px;margin:6px 0;line-height:2}.cx s{color:var(--no);text-decoration-thickness:3px;font-weight:800}
+.ok{color:var(--ok);font-weight:700}.no{color:var(--no);font-weight:700}
+.pr{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed var(--bd)}
+table{border-collapse:collapse}.lad td{border:2px solid var(--ac);padding:5px 14px;font-size:1.1em}.lad td:first-child{border-left:none}td{padding:3px 10px;border:1px solid var(--bd);text-align:center}
+svg{vertical-align:middle;max-width:100%}
+progress{width:100%}
+.p7{font-size:1.25em;line-height:2}.p7 .pr{padding:16px 0;gap:12px}.p7 input[type=text]{width:180px;padding:8px}
+</style></head><body><div class="w">
+<h1>🍕 Fractions Adventure</h1><div style="color:var(--mu)">MTH 100 · Interactive Modules — work through them in order!</div>
+<div class="tabs" id="nv"></div>
+
+<section>
+<h2>🍕 Module 1 · What is a fraction?</h2>
+<p>A fraction describes <b>part of a whole</b>. The whole is cut into <b>equal</b> parts.</p>
+<div class="grid">
+<div class="card">🔼 <b>Numerator</b> (top): how many of those parts we are talking about.</div>
+<div class="card">🔽 <b>Denominator</b> (bottom): how many equal parts the whole is cut into.</div>
+<div class="card">➗ The fraction bar means <b>“divided by”</b>: 3/4 = 3 ÷ 4.</div></div>
+<div class="card"><div class="two"><div><p>🎛️ Play with the sliders:</p>
+<p>Shaded parts (numerator) <b id="v1n"></b><br><input type="range" id="r1n" min="0" max="12" value="3" oninput="u1()"></p>
+<p>Equal parts (denominator) <b id="v1d"></b><br><input type="range" id="r1d" min="2" max="12" value="4" oninput="u1()"></p>
+<div id="o1"></div></div><div id="o1b"></div></div></div>
+<div class="card"><b>🎯 Challenge:</b> <button class="g" onclick="chal()">New challenge</button>
+<p id="c1">Press the button!</p><button onclick="chk1()">Check my sliders</button> <span id="c1f"></span></div>
+</section>
+
+<section hidden>
+<h2>🔍 Module 2 · Types of fractions</h2>
+<div class="grid">
+<div class="card"><b>Proper</b><br>top (numerator) &lt; bottom (denominator), less than 1<br>3/4</div>
+<div class="card"><b>Improper</b><br>top (numerator) ≥ bottom (denominator), 1 or more<br>7/4</div>
+<div class="card"><b>Mixed number</b><br>whole number + proper fraction<br>1 3/4</div>
+<div class="card"><b>Vulgar (common) fraction</b><br>any fraction written as one whole number over another, like 3/4, 7/4 or −5/8 — as opposed to a <i>decimal</i> fraction (0.75). “Vulgar” comes from the Latin <i>vulgaris</i>, “common” — nothing rude! 😄</div></div>
+<div class="card"><p>🎛️ Explore: <b id="v2n"></b> out of <b id="v2d"></b> parts</p>
+<input type="range" id="e2n" min="1" max="30" value="7" oninput="u2()"> numerator<br>
+<input type="range" id="e2d" min="2" max="10" value="3" oninput="u2()"> denominator
+<div id="o2"></div></div>
+<div class="card"><b>🧠 Quick quiz: what type is it?</b><div id="qh" style="font-size:1.6em"></div>
+<button onclick="a2('Proper')">Proper</button> <button onclick="a2('Improper')">Improper</button> <button onclick="a2('Mixed')">Mixed</button> <button class="g" onclick="nq2()">Next ▶</button> <span id="qf"></span></div>
+<div class="card"><b>🔁 Convert (mixed ⇄ improper)</b>
+<p><span class="k">Mixed → improper</span>: whole × denominator + numerator, keep the denominator.<br><span class="k">Improper → mixed</span>: divide; the quotient is the whole, the remainder is the new numerator.</p>
+<p id="cq"></p><input type="text" id="ci" placeholder="17/5 or 3 2/5" onkeydown="if(event.key=='Enter')cc()"> <button onclick="cc()">Check</button> <button class="g" onclick="nc()">Next ▶</button> <span id="cf"></span></div>
+</section>
+
+<section hidden>
+<h2>🟰 Module 3 · Equivalent fractions &amp; simplest form</h2>
+<p>Different-looking fractions can be the <b>same amount</b>. Multiply (or divide) the top and bottom (the <b>numerator</b> and <b>denominator</b>) by the <b>same number</b> — that is just multiplying by 1 (like 2/2)!</p>
+<div class="card"><p>Numerator <b id="v3n"></b> <input type="range" id="e3n" min="1" max="4" value="1" oninput="u3()"><br>Denominator <b id="v3d"></b> <input type="range" id="e3d" min="2" max="10" value="2" oninput="u3()"><br>Multiply by <b id="v3k"></b> <input type="range" id="e3k" min="1" max="5" value="3" oninput="u3()"></p><div id="o3"></div></div>
+<div class="card"><b>✂️ Lowest terms (simplest form)</b>: the top and bottom (the numerator and denominator) share no common factor except 1. Divide both by their <b>GCF</b> (greatest common factor).<br>
+<input type="number" id="s3n" value="18" min="1" oninput="u3b()"> <b>/</b> <input type="number" id="s3d" value="24" min="1" oninput="u3b()"><div id="o3b"></div></div>
+</section>
+
+<section hidden>
+<h2>✖️ Module 4 · Multiply &amp; divide</h2>
+<div class="tip notes">➡️ <b>Multiply:</b> <b>numerator × numerator</b> and <b>denominator × denominator</b>. Mixed numbers? Make them improper first!<br>➗ <b>Divide:</b> <span class="k">KEEP</span> the first, <span class="k">CHANGE</span> ÷ to ×, <span class="k">FLIP</span> the second (swap the numerator and the denominator).<br>💡 <b>Why flip?</b> Dividing by 3/4 asks “how many 3/4’s fit?” — which is the same as multiplying by 4/3.<br>➖ <b>Signs:</b> multiplying same signs is <b>positive</b>; multiplying different signs is <b>negative</b> (dividing follows the same rule). <i>Start with positives, then tick “neg”.</i></div>
+<div class="card"><div oninput="r4()" onchange="r4()" id="in4"></div>
+<p>Examples: <span id="pb4"></span></p><div id="o4"></div></div>
+</section>
+
+<section hidden>
+<h2>🔢 Module 5 · Lowest Common Multiple (LCM)</h2>
+<p>The <b>LCM</b> is the smallest number that both numbers divide into. It makes a perfect common denominator! Three ways to find it:</p>
+<div class="card">Numbers: <input type="number" id="l5a" value="12" min="2" oninput="u5()"> and <input type="number" id="l5b" value="18" min="2" oninput="u5()"><div id="o5"></div></div>
+<div class="tip">💡 Any common multiple works (e.g. 12 × 18 = 216) but the numbers get big — you simplify at the end. The LCM keeps things small!</div>
+</section>
+
+<section hidden>
+<h2>➕ Module 6 · Add &amp; subtract</h2>
+<div class="grid">
+<div class="card"><b>1️⃣ Same denominator</b><br>Add/subtract the numerators (tops), keep the denominator (bottom): 3/8 + 2/8 = 5/8 (like adding slices of the same size).</div>
+<div class="card"><b>2️⃣ Different denominators</b><br>Slices are different sizes! Rewrite with a common denominator (LCM is best), then combine the numerators (tops).</div>
+<div class="card"><b>3️⃣ Negatives</b><br>Subtracting = adding the opposite: a − b = a + (−b). Signs go on the numerator: −3/4 = (−3)/4.</div></div>
+<div class="card"><div oninput="r6()" onchange="r6()" id="in6"></div>
+<p>Examples: <span id="pb6"></span></p><div id="o6"></div></div>
+</section>
+
+<section hidden>
+<h2>🏆 Module 7 · Final practice</h2>
+<p class="p7">15 problems for each operation. Problems 1–5 are positive, 6–10 add mixed/improper numbers, 11–15 add negatives. Answer in lowest terms like <b>3/4</b>, <b>2 1/3</b> or <b>-5/6</b>.</p>
+<div id="o7" class="p7"></div>
+</section>
+</div>
+<script>
+const $=id=>document.getElementById(id),g=(a,b)=>b?g(b,a%b):Math.abs(a),L=(a,b)=>a/g(a,b)*b,rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const S=(n,d)=>{if(d<0){n=-n;d=-d}const k=g(n,d)||1;return[n/k,d/k]};
+const wn=w=>'<span class="wn">'+w+'</span>',fr=(n,d)=>`<span class="f"><i>${n}</i><i>${d}</i></span>`,sg=n=>n<0?'−':'';
+const sf=(n,d)=>sg(n)+fr(Math.abs(n),d),pf=(n,d)=>n<0?'('+sf(n,d)+')':sf(n,d);
+const mix=(n,d)=>{const a=Math.abs(n),w=Math.floor(a/d),r=a%d;return r==0?sg(n)+w:w==0?sg(n)+fr(a,d):sg(n)+wn(w)+fr(r,d)};
+const ans=(N,D)=>{const[n,d]=S(N,D);return d==1?''+n:Math.abs(n)>d?sf(n,d)+' = '+mix(n,d):sf(n,d)};
+const stp=(t,b)=>`<div class="st"><b>${t}</b><div>${b}</div></div>`;
+function bar(n,d,c,W){W=W||130;n=Math.abs(n);let w=Math.max(1,Math.ceil(n/d)),o='';for(let b=0;b<w;b++){o+=`<svg width="${W}" height="34" viewBox="0 0 ${W} 34">`;for(let i=0;i<d;i++)o+=`<rect x="${1+i*(W-2)/d}" y="1" width="${(W-2)/d}" height="32" fill="${b*d+i<n?c:'none'}" stroke="var(--tx)" stroke-width="1.5"/>`;o+='</svg> '}return o}
+function pie(n,d){let o='<svg width="150" height="150" viewBox="-75 -75 150 150">';for(let i=0;i<d;i++){const a=2*Math.PI*i/d-Math.PI/2,b=2*Math.PI*(i+1)/d-Math.PI/2;o+=`<path d="M0 0L${70*Math.cos(a)} ${70*Math.sin(a)}A70 70 0 0 1 ${70*Math.cos(b)} ${70*Math.sin(b)}Z" fill="${i<n?'var(--f)':'none'}" stroke="var(--tx)" stroke-width="2"/>`}return o+'</svg>'}
+function area(n1,d1,n2,d2){let o=`<svg width="${d1*22+4}" height="${d2*22+4}">`;for(let i=0;i<d1;i++)for(let j=0;j<d2;j++)o+=`<rect x="${2+i*22}" y="${2+j*22}" width="22" height="22" fill="${i<n1&&j<n2?'var(--no)':i<n1||j<n2?'var(--f)':'none'}" stroke="var(--tx)"/>`;return o+'</svg>'}
+var nid=0;const ft=(n,d)=>{const[a,b]=S(n,d);if(b==1)return''+a;const A=Math.abs(a),w=Math.floor(A/b),r=A%b;return(a<0?'−':'')+(w?w+' ':'')+r+'/'+b};
+function nl(lo,hi,d,pts,hops){hops=hops||[];const id='ah'+(nid++),x=v=>30+(v-lo)/(hi-lo)*580,y=60,sub=(hi-lo)*d<=60;let o=`<svg viewBox="0 0 640 135" width="100%" style="max-width:640px"><defs><marker id="${id}" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--ac)"/></marker></defs><line x1="${x(lo)}" y1="${y}" x2="${x(hi)}" y2="${y}" stroke="var(--tx)" stroke-width="2"/>`;
+for(let k=Math.ceil(lo*d-1e-9);k<=Math.floor(hi*d+1e-9);k++){const w=k%d==0;if(!sub&&!w)continue;o+=`<line x1="${x(k/d)}" y1="${y-(w?9:5)}" x2="${x(k/d)}" y2="${y+(w?9:5)}" stroke="var(--tx)" stroke-width="${w?2:1}"/>`;if(w)o+=`<text x="${x(k/d)}" y="${y+24}" text-anchor="middle" font-size="13" fill="var(--tx)">${k/d}</text>`}
+hops.forEach(h=>o+=`<path d="M${x(h.a)} ${y-4}Q${(x(h.a)+x(h.b))/2} ${y-50} ${x(h.b)} ${y-6}" fill="none" stroke="var(--ac)" stroke-width="2.5" marker-end="url(#${id})"/>`);
+pts.forEach((p,i)=>o+=`<circle cx="${x(p.v)}" cy="${y}" r="7" fill="var(--f)" stroke="var(--tx)" stroke-width="2"/><text x="${x(p.v)}" y="${y+46+i%2*16}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--tx)">${p.lab}</text>`);return o+'</svg>'}
+function nl2(n,d){const w=Math.floor(n/d),h=[];for(let i=0;i<w;i++)h.push({a:i,b:i+1});if(n%d)h.push({a:w,b:n/d});return`<p>📏 ${n>d?'On the number line: hop whole units from 0, then the leftover part.':'On the number line it sits between 0 and 1.'}</p>`+nl(0,Math.max(1,Math.ceil(n/d)),d,[{v:n/d,lab:n>d?n+'/'+d+' = '+ft(n,d):n+'/'+d}],h)}
+function dvl(A,B){const a=A[0]/A[1],b=B[0]/B[1],h=[];let c=0;while(c+b<=a+1e-9&&h.length<40){h.push({a:c,b:c+b});c+=b}const rem=a-c>1e-9;if(rem)h.push({a:c,b:a});const f=h.length-(rem?1:0);return`<p>How many ${pf(...B)}’s fit into ${pf(...A)}? Hop by ${pf(...B)} from 0:</p>`+nl(0,Math.max(1,Math.ceil(a)),L(A[1],B[1]),[{v:a,lab:ft(...A)}],h)+`<p>${f} full hop${f==1?'':'s'}${rem?' plus a leftover part-hop':''} → <b>${ans(A[0]*B[1],A[1]*B[0])}</b></p>`}
+function mlines(a,b,l){if(l>120)return'';const x=v=>20+v/l*600;let o='<br><svg viewBox="0 0 640 110" width="100%" style="max-width:640px">';[[a,40,'var(--ac)'],[b,90,'var(--no)']].forEach(([s,y,c])=>{o+=`<line x1="20" y1="${y}" x2="620" y2="${y}" stroke="var(--tx)"/>`;for(let v=s;v<=l;v+=s)o+=`<circle cx="${x(v)}" cy="${y}" r="${v==l?7:4}" fill="${c}"/><text x="${x(v)}" y="${y-10}" text-anchor="middle" font-size="${l>60?8:11}" fill="var(--tx)">${v}</text>`});return o+`<line x1="${x(l)}" y1="10" x2="${x(l)}" y2="105" stroke="var(--f)" stroke-width="3" stroke-dasharray="5"/></svg><br><small>📏 Blue: multiples of ${a} · Red: multiples of ${b} · the dashed line is where they first meet.</small>`}
+const cx=(N,D)=>{if(D==1)return'';if(N==0)return'';const k=g(N,D),a=Math.abs(N),n=a/k,d=D/k,s=N<0?'−':'',st=x=>`<s>${x}</s>`,r=a%D,w=Math.floor(a/D),ex=a>D&&r>0&&k>1?`<br><b>Mixed number:</b> ${sf(N,D)} = ${s}${wn(w)}${fr(r,D)} = ${s}${wn(w)}${fr(r/k,d)}<br><small>Simplify the fraction part too: ${fr(r,D)} = ${fr(r/k+' × '+k,d+' × '+k)} = ${fr(r/k+' × '+st(k),d+' × '+st(k))} = ${fr(r/k,d)}</small>`:'';if(k==1)return`<div class="cx">${sf(N,D)}: the GCF of ${a} and ${D} is 1, so it is already in <b>simplest form</b> ✅</div>`;return`<div class="cx">Break each number into factors using the GCF (${k}):<br>${a} = ${n} × ${k} &nbsp; and &nbsp; ${D} = ${d} × ${k}<br>${sf(N,D)} = ${s}${fr(n+' × '+k,d+' × '+k)} = ${s}${fr(n+' × '+st(k),d+' × '+st(k))} = <b>${d==1?s+n:sf(N/k,d)}</b> ✅<br><small>The common factor ${k} cancels (divides out) on the numerator and the denominator.</small>${ex}</div>`};
+const T=['🍕 1 Basics','🔍 2 Types','🟰 3 Equivalent','✖️ 4 × ÷','🔢 5 LCM','➕ 6 + −','🏆 7 Practice'];
+$('nv').innerHTML=T.map((t,i)=>`<button class="g" id="nb${i}" onclick="go(${i})">${t}</button>`).join('');
+function go(i){document.querySelectorAll('section').forEach((s,j)=>s.hidden=j!=i);T.forEach((_,j)=>$('nb'+j).className=j==i?'on':'g');scrollTo(0,0)}
+document.querySelectorAll('section').forEach((s,i)=>{if(i<6)s.insertAdjacentHTML('beforeend',`<p><button onclick="go(${i+1})">Next module ▶</button></p>`)});
+/* M1 */
+function u1(){const d=+r1d.value;r1n.max=d;const n=Math.min(+r1n.value,d);r1n.value=n;v1n.textContent=n;v1d.textContent=d;o1.innerHTML=pie(n,d)+'<div>'+bar(n,d,'var(--f)')+'</div><p>'+fr(n,d)+' = <b>'+n+'</b> of <b>'+d+'</b> equal parts shaded.</p>';o1b.innerHTML='<p>📏 On the number line, the space from 0 to 1 is cut into '+d+' equal steps. Taking '+n+' steps from 0 lands on '+fr(n,d)+'.</p>'+nl(0,1,d,[{v:n/d,lab:n+'/'+d}])}
+var t1;function chal(){const d=rnd(3,10);t1=[rnd(1,d-1),d];c1.innerHTML='Shade '+fr(t1[0],t1[1]);c1f.textContent=''}
+function chk1(){if(!t1)return;c1f.innerHTML=(+r1n.value==t1[0]&&+r1d.value==t1[1])?'<span class="ok">🎉 Correct!</span>':'<span class="no">❌ Not yet — check both sliders.</span>'}
+/* M2 */
+function u2(){const n=+e2n.value,d=+e2d.value,w=Math.floor(n/d),r=n%d;v2n.textContent=n;v2d.textContent=d;o2.innerHTML=`<p><b>${n<d?'Proper fraction':n==d?'Improper (equals 1 whole)':'Improper fraction'}</b> ${fr(n,d)}</p>`+bar(n,d,'var(--f)')+nl2(n,d)+(n>=d?`<p>→ <b>Mixed:</b> ${n} ÷ ${d} = ${w}${r?' remainder '+r:''} → <b>${r?wn(w)+fr(r,d):w}</b>${r&&g(r,d)>1?' = <b>'+wn(w)+fr(r/g(r,d),d/g(r,d))+'</b> (simplify the fraction part)':''}</p><p>← <b>Back:</b> (${w} × ${d}${r?' + '+r:''}) over ${d} = ${fr(n,d)}</p>`:'')}
+var q2a;function nq2(){const t=rnd(0,2),d=rnd(2,9);if(t==0){qh.innerHTML=fr(rnd(1,d-1),d);q2a='Proper'}else if(t==1){qh.innerHTML=fr(rnd(d+1,3*d),d);q2a='Improper'}else{qh.innerHTML=wn(rnd(1,4))+fr(rnd(1,d-1),d);q2a='Mixed'}qf.textContent=''}
+function a2(x){qf.innerHTML=x==q2a?'<span class="ok">🎉 Yes! '+q2a+'</span>':'<span class="no">❌ Not quite — it is '+q2a+'</span>'}
+function parse(s){s=s.trim().replace(/−/g,'-');let m=s.match(/^(-?)\s*(?:(\d+)\s+)?(\d+)\s*\/\s*(\d+)$/);if(m){const d=+m[4];if(!d)return null;return[(m[1]?-1:1)*((+m[2]||0)*d+ +m[3]),d]}m=s.match(/^-?\d+$/);return m?[+s,1]:null}
+var cv;function nc(){const d=rnd(2,9),w=rnd(1,5),n=rnd(1,d-1);const mx=Math.random()<.5;cv=[w*d+n,d,!mx];cq.innerHTML=mx?`Write ${wn(w)}${fr(n,d)} as an improper fraction`:`Write ${fr(w*d+n,d)} as a mixed number`;cf.textContent='';ci.value=''}
+function cc(){const p=parse(ci.value);const v=ci.value.trim(),isM=/\d\s+\d/.test(v);cf.innerHTML=!p?'Type like 17/5 or 3 2/5':cv[2]&&!isM?'<span class="no">Write it as a mixed number, like 3 2/5</span>':!cv[2]&&isM?'<span class="no">Write it as an improper fraction, like 17/5</span>':p[0]*cv[1]==p[1]*cv[0]?'<span class="ok">🎉 Correct!</span>':'<span class="no">❌ Try again — whole × denominator + numerator</span>'}
+/* M3 */
+function u3(){const d=+e3d.value;e3n.max=d;const n=Math.min(+e3n.value,d),k=+e3k.value;e3n.value=n;v3n.textContent=n;v3d.textContent=d;v3k.textContent=k;o3.innerHTML=`<p>${bar(n,d,'var(--f)',420)}</p>${nl(0,1,d,[{v:n/d,lab:n+'/'+d}])}<p>${bar(n*k,d*k,'var(--ok)',420)}</p>${nl(0,1,d*k,[{v:n/d,lab:(n*k)+'/'+(d*k)}])}<p>📏 Different tick marks, <b>same point</b> on the number line!</p><p style="font-size:1.2em">${fr(n,d)} = ${fr(n+'×'+k,d+'×'+k)} = ${fr(n*k,d*k)}</p><p>Same amount shaded — just more, smaller slices!</p>`}
+const fl=n=>{const a=[];for(let i=1;i<=n;i++)if(n%i==0)a.push(i);return a};
+function u3b(){const n=+s3n.value,d=+s3d.value;if(!(n>=1&&d>=1)){o3b.textContent='Enter whole numbers ≥ 1';return}const k=g(n,d);o3b.innerHTML=`<p>Factors of ${n}: ${fl(n).join(', ')}<br>Factors of ${d}: ${fl(d).join(', ')}<br>GCF = <b>${k}</b></p>${cx(n,d)}${bar(n,d,'var(--f)',420)}<br>${bar(n/k,d/k,'var(--ok)',420)}`}
+/* operand widgets */
+const opw=(id,v)=>`<span><label><input type="checkbox" id="${id}s"> neg</label> <input type="number" id="${id}w" min="0" value="${v[1]}" title="whole part"><span class="f"><input type="number" id="${id}n" min="0" value="${v[2]}"><input type="number" id="${id}d" min="1" value="${v[3]}"></span></span>`;
+const sel=(id,o)=>`<select id="${id}">${o.map(x=>`<option>${x}</option>`).join('')}</select>`;
+$('in4').innerHTML=opw('a4',[0,0,2,3])+' '+sel('op4',['×','÷'])+' '+opw('b4',[0,0,3,4])+'<br><small>(left box = whole number part for mixed numbers; leave 0 if none)</small>';
+$('in6').innerHTML=opw('a6',[0,0,1,2])+' '+sel('op6',['+','−'])+' '+opw('b6',[0,0,1,3]);
+function get(id){const w=+$(id+'w').value||0,n=+$(id+'n').value||0,d=Math.max(1,+$(id+'d').value||1);return[(w*d+n)*($(id+'s').checked?-1:1),d]}
+function disp(id){const w=+$(id+'w').value||0,n=+$(id+'n').value||0,d=Math.max(1,+$(id+'d').value||1),ng=$(id+'s').checked;const t=w&&n?wn(w)+fr(n,d):w?w:fr(n,d);return ng?'(−'+t+')':t}
+function setv(id,v){$(id+'s').checked=!!v[0];$(id+'w').value=v[1];$(id+'n').value=v[2];$(id+'d').value=v[3]}
+const PRE={4:[['2/3 × 3/4',[0,0,2,3],[0,0,3,4],'×'],['2/3 ÷ 4/5',[0,0,2,3],[0,0,4,5],'÷'],['2 ⅓ × 1 ½',[0,2,1,3],[0,1,1,2],'×'],['−3/4 × 2/5',[1,0,3,4],[0,0,2,5],'×'],['−1 ½ ÷ −3/4',[1,1,1,2],[1,0,3,4],'÷']],
+6:[['3/8 + 2/8',[0,0,3,8],[0,0,2,8],'+'],['1/2 + 1/3',[0,0,1,2],[0,0,1,3],'+'],['3/4 − 1/6',[0,0,3,4],[0,0,1,6],'−'],['2 ½ + 1 ¾',[0,2,1,2],[0,1,3,4],'+'],['−3/4 + 1/6',[1,0,3,4],[0,0,1,6],'+'],['1/2 − 5/6',[0,0,1,2],[0,0,5,6],'−'],['−2/3 − 1/4',[1,0,2,3],[0,0,1,4],'−']]};
+[4,6].forEach(l=>$('pb'+l).innerHTML=PRE[l].map((p,k)=>`<button class="g" onclick="pre(${l},${k})">${p[0]}</button>`).join(' '));
+function pre(l,k){const P=PRE[l][k];setv('a'+l,P[1]);setv('b'+l,P[2]);$('op'+l).value=P[3];l==4?r4():r6()}
+var lab={4:{S:[],k:1},6:{S:[],k:1}};
+function showSteps(i){const l=lab[i];$('o'+i).innerHTML=l.S.slice(0,l.k).join('')+(l.k<l.S.length?`<button onclick="lab[${i}].k++;showSteps(${i})">Next step ▶</button>`:'<p>🎉 All steps done — change the numbers and try again!</p>')}
+function r4(){const A=get('a4'),B=get('b4'),m=$('op4').value=='×',s=[];lab[4].k=1;
+if(!m&&B[0]==0){lab[4].S=[stp('⚠️','You cannot divide by zero!')];showSteps(4);return}
+s.push(stp(`Step ${s.length+1} · Write each as a fraction`,`<b>Problem:</b> ${disp('a4')} ${$('op4').value} ${disp('b4')}<br><br>${disp('a4')} = ${pf(...A)}<span class="gap"></span>${disp('b4')} = ${pf(...B)}<br><small>Mixed → improper: whole × denominator + numerator.</small>`));
+let Q=B;if(!m){Q=[(B[0]<0?-1:1)*B[1],Math.abs(B[0])];s.push(stp(`Step ${s.length+1} · KEEP · CHANGE · FLIP`,`<span class="k">KEEP</span> ${pf(...A)} &nbsp; <span class="k">CHANGE</span> ÷ to × &nbsp; <span class="k">FLIP</span> ${pf(...B)} → ${pf(...Q)}<br>Now: ${pf(...A)} × ${pf(...Q)}`))}
+const ng=(A[0]<0)!=(Q[0]<0)&&A[0]!=0;
+s.push(stp(`Step ${s.length+1} · Decide the sign`,`Multiplying same signs is positive; multiplying different signs is negative. The answer is <b>${A[0]==0?'zero':ng?'negative':'positive'}</b>.`));
+const N=A[0]*Q[0],D=A[1]*Q[1];
+s.push(stp(`Step ${s.length+1} · Multiply numerator × numerator, denominator × denominator`,`${pf(...A)} × ${pf(...Q)} = ${sf(N,D)}<br>Numerators: ${A[0]} × ${Q[0]} = ${N}<br>Denominators: ${A[1]} × ${Q[1]} = ${D}<br><small>Tip: cancel common factors between a numerator and a denominator first to keep numbers small.</small>`));
+const pos=m&&A[0]>0&&B[0]>0&&A[0]<A[1]&&B[0]<B[1]&&A[1]<=12&&B[1]<=12;
+s.push(stp(`Step ${s.length+1} · Simplify`,`${cx(N,D)}<br>Answer: <b>${ans(N,D)}</b>`+(pos?`<br>${area(A[0],A[1],B[0],B[1])}<br><small>Red overlap: ${N} of ${D} small boxes = the answer!</small>`:'')));
+if(!m&&A[0]>0&&B[0]>0&&A[0]*B[1]<=20*A[1]*B[0])s.push(stp(`Step ${s.length+1} · See it on a number line`,dvl(A,B)));lab[4].S=s;showSteps(4)}
+function r6(){const A=get('a6'),m=$('op6').value=='+',B0=get('b6'),B=[m?B0[0]:-B0[0],B0[1]],s=[],c=x=>x<0?'var(--no)':'var(--ok)';lab[6].k=1;
+s.push(stp(`Step ${s.length+1} · Write each as a fraction`,`<b>Problem:</b> ${disp('a6')} ${$('op6').value} ${disp('b6')}<br><br>${disp('a6')} = ${pf(...A)}<span class="gap"></span>${disp('b6')} = ${pf(...B0)}`+(m?'':`<br>Subtracting = <b>adding the opposite</b>: ${pf(...A)} + ${pf(...B)}`)));
+const l=L(A[1],B[1]);
+s.push(stp(`Step ${s.length+1} · Common denominator`,A[1]==B[1]?`Same denominator (${l}) ✅ — no conversion needed.`:`Denominators ${A[1]} and ${B[1]} differ. LCM(${A[1]}, ${B[1]}) = <b>${l}</b>. (Any common multiple like ${A[1]*B[1]} also works — simplify at the end.)`));
+const x=A[0]*l/A[1],y=B[0]*l/B[1];
+s.push(stp(`Step ${s.length+1} · Rewrite as equivalent fractions`,`<b>Original problem:</b> ${pf(...A)} ${$('op6').value} ${pf(...B0)}<span class="gap"></span>→<span class="gap"></span><b>Rewritten:</b> ${pf(x,l)} ${$('op6').value} ${pf(m?y:-y,l)}<br><br>${pf(...A)} = ${pf(x,l)}<br>${bar(x,l,c(x),420)}<br>${pf(...B0)} = ${pf(m?y:-y,l)}<br>${bar(y,l,c(y),420)}<br><small>🟩 positive &nbsp; 🟥 negative (a subtracted amount counts as negative)</small>`));
+s.push(stp(`Step ${s.length+1} · Combine the numerators`,`${x} + ${y<0?'('+y+')':y} = ${x+y} → ${sf(x+y,l)}<br>The denominator stays ${l}.<br>📏 Start at ${ft(x,l)}, then move ${y<0?'left':'right'} ${ft(Math.abs(y),l)}:${nl(Math.min(0,Math.floor(x/l),Math.floor((x+y)/l)),Math.max(1,Math.ceil(x/l),Math.ceil((x+y)/l)),l,[{v:x/l,lab:'start '+ft(x,l)},{v:(x+y)/l,lab:'end '+ft(x+y,l)}],[{a:x/l,b:(x+y)/l}])}`));
+s.push(stp(`Step ${s.length+1} · Simplify`,`${cx(x+y,l)}<br>Answer: <b>${ans(x+y,l)}</b><br>${bar(x+y,l,c(x+y),420)}`));
+lab[6].S=s;showSteps(6)}
+/* M5 */
+function fac(n){const a=[];for(let p=2;p<=n;p++)while(n%p==0){a.push(p);n/=p}return a}
+function u5(){const a=+l5a.value,b=+l5b.value;if(!(a>=2&&b>=2&&a<=99&&b<=99)){o5.innerHTML='<p class="no">Enter whole numbers from 2 to 99.</p>';return}
+const l=L(a,b),ma=[],mb=[];for(let i=a;i<=l;i+=a)ma.push(i==l?`<span class="k">${i}</span>`:i);for(let i=b;i<=l;i+=b)mb.push(i==l?`<span class="k">${i}</span>`:i);
+const fa=fac(a),fb=fac(b),mx={};[fa,fb].forEach(f=>{const c={};f.forEach(p=>c[p]=(c[p]||0)+1);for(const p in c)mx[p]=Math.max(mx[p]||0,c[p])});
+let r=[a,b],rows=`<tr><td></td><td>${a}</td><td>${b}</td></tr>`,pr=1,ds=[];while(r.some(x=>x>1)){let p=2;while(!r.some(x=>x%p==0))p++;pr*=p;ds.push(p);r=r.map(x=>x%p==0?x/p:x);rows+=`<tr><td class="k">${p}</td><td>${r[0]}</td><td>${r[1]}</td></tr>`}
+o5.innerHTML=`<div class="st"><b>Method 1 · List multiples</b><br>${a}: ${ma.join(', ')}<br>${b}: ${mb.join(', ')}<br>First match → <b>LCM = ${l}</b>${mlines(a,b,l)}</div>
+<div class="st"><b>Method 2 · Prime factors</b><br>${a} = ${fa.join(' × ')}<br>${b} = ${fb.join(' × ')}<br>Take the <i>biggest power</i> of every prime: ${Object.keys(mx).map(p=>p+(mx[p]>1?'<sup>'+mx[p]+'</sup>':'')).join(' × ')} = <b>${l}</b></div>
+<div class="st"><b>Method 3 · Grid (ladder) method</b><br>Divide by a prime that goes into at least one number; repeat until you reach all 1s.<br><table class="lad">${rows}</table>Multiply the left column: ${ds.join(' × ')} = <b>${pr}</b></div>`}
+/* M7 */
+var P={},cur='add';const OPS={add:'+',sub:'−',mul:'×',div:'÷'},NM={add:'➕ Add',sub:'➖ Subtract',mul:'✖️ Multiply',div:'➗ Divide'},DS=[2,3,4,5,6,8,9,10,12];
+function opd(i,d){const mx=i>=5&&Math.random()<.6,w=mx?rnd(1,3):0;let n=rnd(1,d-1);if(i>=5&&!mx&&Math.random()<.4)n=rnd(d+1,2*d);let N=w*d+n;if(i>=10&&Math.random()<.55)N=-N;return{N,D:d,mx}}
+function gen(op){const a=[],as=op=='add'||op=='sub';for(let i=0;i<15;i++){const d1=as?DS[rnd(0,8)]:rnd(2,9);let A=opd(i,d1),B=opd(i,as?(i<3?d1:DS[rnd(0,8)]):rnd(2,9));if(op=='sub'&&i<10&&A.N*B.D<B.N*A.D)[A,B]=[B,A];a.push({a:A,b:B,ok:0})}return a}
+const dp=o=>(o.N<0?'(':'')+(o.mx&&Math.abs(o.N)>o.D?mix(o.N,o.D):sf(o.N,o.D))+(o.N<0?')':'');
+function calc(o,a,b){return o=='add'?S(a.N*b.D+b.N*a.D,a.D*b.D):o=='sub'?S(a.N*b.D-b.N*a.D,a.D*b.D):o=='mul'?S(a.N*b.N,a.D*b.D):S(a.N*b.D,a.D*b.N)}
+function rp(){$('o7').innerHTML=`<div class="tabs">${Object.keys(OPS).map(k=>`<button class="${k==cur?'':'g'}" onclick="cur='${k}';rp()">${NM[k]} <span id="c_${k}"></span></button>`).join('')}</div><p>⭐ Total score: <b id="sc"></b> / 60</p><progress id="pg" max="60" value="0"></progress><div class="card">`+P[cur].map((p,i)=>`<div class="pr"><b>${i+1}.</b><span>${dp(p.a)} ${OPS[cur]} ${dp(p.b)} =</span><input type="text" id="i${i}" placeholder="3/4 or 2 1/3" value="${p.v||''}" onkeydown="if(event.key=='Enter')chk(${i})"><button onclick="chk(${i})">Check</button><button class="g" onclick="sol(${i})">💡 Show work</button><div id="f${i}">${p.m||''}</div></div>`).join('')+`</div><button class="g" onclick="P[cur]=gen(cur);rp()">🔄 New set of 15</button>`;sc()}
+function sc(){let t=0;for(const k in P){const c=P[k].filter(p=>p.ok).length;t+=c;if($('c_'+k))$('c_'+k).textContent=c+'/15'}$('sc').textContent=t;$('pg').value=t}
+function chk(i){const p=P[cur][i],r=parse($('i'+i).value);p.v=$('i'+i).value;let m;
+if(!r)m='<span class="no">Type like 3/4, 2 1/3 or 5</span>';else{const[N,D]=calc(cur,p.a,p.b);if(r[0]*D!=r[1]*N)m='<span class="no">❌ Not quite — try again or press 💡</span>';else if(r[1]!=S(...r)[1])m='<span class="no">Right value — now reduce to lowest terms!</span>';else{m='<span class="ok">🎉 Correct!</span>';p.ok=1}}
+p.m=m;$('f'+i).innerHTML=m;sc()}
+function sol(i){const p=P[cur][i],a=p.a,b=p.b,o=cur;let t;
+if(o=='add'||o=='sub'){const l=L(a.D,b.D),x=a.N*l/a.D,y=b.N*l/b.D,z=o=='add'?x+y:x-y;t=`LCD = ${l}: ${sf(a.N,a.D)} = ${sf(x,l)}, ${sf(b.N,b.D)} = ${sf(y,l)}. Then ${x} ${OPS[o]} ${y<0?'('+y+')':y} = ${z}.<br>${cx(z,l)}Answer: <b>${ans(z,l)}</b>`}
+else if(o=='mul')t=`Improper: ${sf(a.N,a.D)} × ${pf(b.N,b.D)} = ${sf(a.N*b.N,a.D*b.D)}.<br>${cx(a.N*b.N,a.D*b.D)}Answer: <b>${ans(a.N*b.N,a.D*b.D)}</b>`;
+else{const fb=[(b.N<0?-1:1)*b.D,Math.abs(b.N)];t=`<span class="k">KEEP</span> ${sf(a.N,a.D)} <span class="k">CHANGE</span> ÷→× <span class="k">FLIP</span> ${pf(b.N,b.D)} → ${pf(...fb)}. ${sf(a.N,a.D)} × ${pf(...fb)} = ${sf(a.N*fb[0],a.D*fb[1])}.<br>${cx(a.N*fb[0],a.D*fb[1])}Answer: <b>${ans(a.N*fb[0],a.D*fb[1])}</b>`}
+p.m=t;$('f'+i).innerHTML=t}
+for(const k in OPS)P[k]=gen(k);
+u1();u2();nq2();nc();u3();u3b();u5();pre(4,0);pre(6,1);rp();go(0);
+</script></body></html>
